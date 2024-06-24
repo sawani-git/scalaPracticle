@@ -1,0 +1,39 @@
+object scala_Lab_2_4 {
+
+  def main(args: Array[String]): Unit = {
+    val fixedCost = 500.0 // Cost per performance
+    val costPerAttendee = 3.0 // Cost per attendee
+
+    val attendanceByPrice = Map(
+      15.0 -> 120, // Attendance at Rs. 15 ticket price
+      10.0 -> 140,  // Attendance at Rs. 10 ticket price
+      20.0 -> 100   // Attendance at Rs. 20 ticket price
+    )
+
+    val (bestPrice, maxProfit) = findBestPrice(fixedCost, costPerAttendee, attendanceByPrice)
+
+    println(s"The best ticket price is Rs.$bestPrice with a maximum profit of Rs.$maxProfit%.2f")
+  }
+
+  def calculateProfit(ticketPrice: Double, attendance: Int): Double = {
+    val revenue = ticketPrice * attendance
+    val totalCost = fixedCost + attendance * costPerAttendee
+    revenue - totalCost
+  }
+
+  def findBestPrice(fixedCost: Double, costPerAttendee: Double, attendanceByPrice: Map[Double, Int]): (Double, Double) = {
+    var bestProfit = Double.MinValue
+    var bestPrice = 0.0
+
+    for ((price, attendance) <- attendanceByPrice) {
+      val profit = calculateProfit(price, attendance)
+      if (profit > bestProfit) {
+        bestProfit = profit
+        bestPrice = price
+      }
+    }
+
+    (bestPrice, bestProfit)
+  }
+}
+
