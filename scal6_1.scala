@@ -11,19 +11,19 @@ val inventory2: Map[Int, Product] = Map(
   104 -> Product(104, "ProductD", 10, 35.0)
 )
 
-// I. Retrieve all product names from inventory1
+// Retrieve all product names from inventory1
 val productNames = inventory1.values.map(_.name).toList
 println("Product Names: " + productNames.mkString(", "))
 
-// II. Calculate the total value of all products in inventory1
+// Calculate the total value of all products in inventory1
 val totalValue = inventory1.values.map(product => product.quantity * product.price).sum
 println("Total Value of Inventory1: " + totalValue)
 
-// III. Check if inventory1 is empty
+// Check if inventory1 is empty
 val isEmpty = inventory1.isEmpty
 println("Is Inventory1 Empty? " + isEmpty)
 
-// IV. Merge inventory1 and inventory2, updating quantities and retaining the highest price
+//  Merge inventory1 and inventory2, updating quantities and retaining the highest price
 def mergeInventories(inv1: Map[Int, Product], inv2: Map[Int, Product]): Map[Int, Product] = {
   inv2.foldLeft(inv1) {
     case (mergedInv, (id, newProduct)) =>
@@ -43,7 +43,7 @@ def mergeInventories(inv1: Map[Int, Product], inv2: Map[Int, Product]): Map[Int,
 val mergedInventory = mergeInventories(inventory1, inventory2)
 println("Merged Inventory: " + mergedInventory.values.mkString(", "))
 
-// V. Check if a product with a specific ID (e.g., 102) exists and print its details
+//  Check if a product with a specific ID (e.g., 102) exists and print its details
 val productIdToCheck = 102
 val productExists = inventory1.get(productIdToCheck)
 
